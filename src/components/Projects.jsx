@@ -32,19 +32,18 @@ const projects = [
     github: 'https://github.com/yourusername/news-aggregator',
   },
   {
-  title: 'Portfolio Website',
-  tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Jenkins', 'GitHub Actions'],
-  description: [
-    'Developed a modern portfolio website with smooth animations and responsive design.',
-    'Includes sections like About, Projects, Contact, Resume download, and theme toggle (light/dark).',
-    'Built entirely with React and styled using Tailwind CSS following utility-first design principles.',
-    'Integrated CI/CD using Jenkins and GitHub Actions for automated builds and deployment on every push.',
-    'Ensured zero-downtime deployments and automated testing to maintain reliability across changes.',
-  ],
-  link: 'https://yourportfolio.live',
-  github: 'https://github.com/yourusername/portfolio-react-tailwind',
-}
-
+    title: 'Portfolio Website',
+    tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Jenkins', 'GitHub Actions'],
+    description: [
+      'Developed a modern portfolio website with smooth animations and responsive design.',
+      'Includes sections like About, Projects, Contact, Resume download, and theme toggle (light/dark).',
+      'Built entirely with React and styled using Tailwind CSS following utility-first design principles.',
+      'Integrated CI/CD using Jenkins and GitHub Actions for automated builds and deployment on every push.',
+      'Ensured zero-downtime deployments and automated testing to maintain reliability across changes.',
+    ],
+    link: 'https://yourportfolio.live',
+    github: 'https://github.com/yourusername/portfolio-react-tailwind',
+  },
 ];
 
 // Flip card component
@@ -54,54 +53,53 @@ const FlipCard = ({ project }) => {
   return (
     <div
       onClick={() => setFlipped(!flipped)}
-      className="w-[500px] h-[450px] perspective cursor-pointer"
+      className="w-full sm:w-[90%] md:w-[450px] h-[400px] perspective mx-auto cursor-pointer"
     >
       <div
         className={`relative w-full h-full transition-transform duration-700 preserve-3d ${
           flipped ? 'rotate-y-180' : ''
         }`}
       >
-        {/* Front Side */}
-        <div className="absolute w-full h-full backface-hidden bg-[#1c1c1c] border border-red-800 p-8 rounded-3xl shadow-[0_0_20px_rgba(255,0,0,0.15)] hover:shadow-[0_0_35px_rgba(255,0,0,0.4)]">
-          <h3 className="text-2xl font-semibold text-red-400 mb-4">{project.title}</h3>
+        {/* Front */}
+        <div className="absolute w-full h-full backface-hidden bg-[#1c1c1c] border border-red-800 p-6 rounded-3xl shadow-[0_0_20px_rgba(255,0,0,0.15)] hover:shadow-[0_0_35px_rgba(255,0,0,0.4)] overflow-hidden">
+          <h3 className="text-xl font-semibold text-red-400 mb-4">{project.title}</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tech.map((tech, idx) => (
               <span
                 key={idx}
-                className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-white text-xs px-3 py-1 rounded-full font-medium tracking-wide shadow-sm"
+                className="bg-red-100 text-red-800 dark:bg-red-900 dark:text-white text-xs px-3 py-1 rounded-full font-medium tracking-wide"
               >
                 {tech}
               </span>
             ))}
           </div>
-          <ul className="list-disc list-inside space-y-2 text-sm text-gray-300">
+          <ul className="list-disc list-inside space-y-2 text-sm text-gray-300 overflow-auto max-h-40 pr-1">
             {project.description.map((line, idx) => (
               <li key={idx}>{line}</li>
             ))}
           </ul>
         </div>
 
-        {/* Back Side */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[#111111] border border-pink-800 p-8 rounded-3xl shadow-[0_0_20px_rgba(255,0,0,0.2)] text-white flex flex-col justify-center items-center gap-4">
-          <h3 className="text-xl font-bold text-pink-400">🔗 Links</h3>
+        {/* Back */}
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[#111111] border border-pink-800 p-6 rounded-3xl shadow-lg text-white flex flex-col justify-center items-center gap-4">
+          <h3 className="text-lg font-bold text-pink-400">🔗 Links</h3>
 
           {project.link && (
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow hover:shadow-pink-600/70 transition"
+              className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold hover:shadow-xl transition"
             >
               <FaExternalLinkAlt /> Live Demo
             </a>
           )}
-
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-gray-900 hover:bg-gray-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow"
+              className="flex items-center gap-2 bg-gray-900 hover:bg-gray-700 px-5 py-2 rounded-full text-sm font-semibold"
             >
               <FaGithub /> GitHub Code
             </a>
@@ -112,18 +110,18 @@ const FlipCard = ({ project }) => {
   );
 };
 
-// Projects section
+// Projects Section
 const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen px-6 md:px-24 py-20 bg-gradient-to-b from-black via-[#111] to-black text-gray-100"
+      className="min-h-screen px-4 sm:px-6 md:px-20 py-20 bg-gradient-to-b from-black via-[#111] to-black text-gray-100"
     >
-      <h2 className="text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-red-600">
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-red-600">
         🚀 Projects
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
         {projects.map((project, index) => (
           <FlipCard key={index} project={project} />
         ))}
